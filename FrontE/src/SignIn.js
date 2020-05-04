@@ -42,9 +42,7 @@ const SignIn = (props) => {
 
   if(props.ls){
       return (
-    <nav className = "HomeNav">
       <h1> Hello {props.ln}, you have already signed in</h1>
-    </nav>
   )
   }
   return (

@@ -42,9 +42,7 @@ const ChangePwd = (props) => {
 
   if(!props.ls){
     return(
-      <nav className = "HomeNav">
         <h1> Please sign in first</h1>
-      </nav>
     );
   }
 

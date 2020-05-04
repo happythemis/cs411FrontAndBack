@@ -41,9 +41,7 @@ const DeleteAccount = (props) => {
 
   if(delete_success){
       return(
-        <nav className = "HomeNav">
           <h1> Your account has been deleted</h1>
-        </nav>
     );
   }
 

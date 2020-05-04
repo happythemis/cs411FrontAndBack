@@ -74,113 +74,100 @@ export default function App() {
   const [login_email, change_login_email] = useState('');
   const [login_name, change_login_name] = useState('');
   const isBackgroundRed = true;
+
   function FormRow() {
     return (
-      <Router>
-      <div>
         <form className={classes.form} noValidate>
         {login_status ? (
-        // Menu for Signed in Status
-        <Grid container>
-            <Grid item xs={3}>
+          <navi>
+          <ul className ="nav-links">
             <Link to="/myfavoritesongs">
-                <Paper className={classes.paper}>My Fav Songs</Paper>
-              </Link>
-            </Grid>
-            <Grid item xs={3}>
+              <li>My Fav Song</li>
+            </Link>
             <Link to="/playlist">
-                <Paper className={classes.paper}>Playlist</Paper>
-              </Link>
-            </Grid>
-            <Grid item xs={3}>
+              <li>Playlist</li>
+            </Link>
             <Link to="/changepwd">
-                <Paper className={classes.paper}>Change Password</Paper>
-              </Link>
-            </Grid>
-            <Grid item xs={3}>
+              <li>Change Password</li>
+            </Link>
             <Link to="/deleteaccount">
-                <Paper className={classes.paper}>Delete Account</Paper>
-              </Link>
-            </Grid>
-          </Grid>
+              <li>Delete Account</li>
+            </Link>
+          </ul>
+        </navi>
       ):(
         // // Menu for NOT Signed in Status
-          <Grid container>
-            <Grid item xs={4}>
-             <Link to="/">
-               <Paper className={classes.paper}>Playlistd</Paper>
-             </Link>
-            </Grid>
-            <Grid item xs={4}>
-              <Link to="/signin">
-                <Paper className={classes.paper}>Sign In</Paper>
-              </Link>
-            </Grid>
-            <Grid item xs={4}>
-              <Link to="/signup">
-                <Paper className={classes.paper}>Sign Up</Paper>
-              </Link>
-            </Grid>
-          </Grid>
+        <navi>
+          <ul className ="nav-links">
+            <Link to="/">
+              <li>Playlistd</li>
+            </Link>
+            <Link to="/signin">
+              <li>Sign In</li>
+            </Link>
+            <Link to="/signup">
+              <li>Sign Up</li>
+            </Link>
+          </ul>
+        </navi>
+          
       )}
-      <Switch>
-        <Route exact path="/" component={Playlist}/>
-        <Route
-          path="/signin"
-          render={(props) => <SignIn {...props} cls={change_login_status} ls={login_status}
-          cle={change_login_email} cln={change_login_name} ln={login_name}/>}
-        />
-        <Route exact path="/signup" component={SignUp} />
-        <Route
-          path="/changepwd"
-          render={(props) => <ChangePwd {...props} ls = {login_status} email={login_email}/>}
-        />
-        <Route
-          path="/deleteaccount"
-          render={(props) => <DeleteAccount {...props} cls={change_login_status} ls={login_status}
-          cle={change_login_email} cln={change_login_name} email={login_email}/>}
-        />
-        <Route path="/myfavoritesongs" exact component={MyInfo}/>
-        <Route path="/playlist" exact component={Playlist}/>
-        
-       
-       </Switch>
       </form>
-      </div>
-      </Router>
+      
+      
     );
   }
   
   return (
-    <div className="App">
-      <header className="App-header">
-        {/* <div className={classes.root}>  */}
-          <FormRow />
-         {/* </div> */}
-        {/* <img src={logo} className="App-logo" alt="logo" /> */}
-        {/* <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a> */}
-      </header>
-    </div>
+      <Router>
+        <div className="App">
+          {/* <Nav/> */}
+          <FormRow/>
+          <Switch>
+            <Route exact path="/" component={Playlist}/>
+            <Route
+              path="/signin"
+              render={(props) => <SignIn {...props} cls={change_login_status} ls={login_status}
+              cle={change_login_email} cln={change_login_name} ln={login_name}/>}
+            />
+            <Route exact path="/signup" component={SignUp} />
+            <Route
+              path="/changepwd"
+              render={(props) => <ChangePwd {...props} ls = {login_status} email={login_email}/>}
+            />
+            <Route 
+              path="/deleteaccount"
+              render={(props) => <DeleteAccount {...props} cls={change_login_status} ls={login_status}
+              cle={change_login_email} cln={change_login_name} email={login_email}/>}
+            />
+            <Route path="/myfavoritesongs" exact component={MyInfo}/>
+            <Route path="/playlist" exact component={Playlist}/>
+            
+          
+          </Switch>
+
+        </div>
+      </Router>
+      
     // <div className="App">
-     
-    //   <div className={classes.root}> */}
-    //    <FormRow />
-    //  </div>
+    //   <header className="App-header">
+    //     {/* <div className={classes.root}>  */}
+    //       {/* <FormRow /> */}
+    //      {/* </div> */}
+    //     {/* <img src={logo} className="App-logo" alt="logo" /> */}
+    //     {/* <p>
+    //       Edit <code>src/App.js</code> and save to reload.
+    //     </p>
+    //     <a
+    //       className="App-link"
+    //       href="https://reactjs.org"
+    //       target="_blank"
+    //       rel="noopener noreferrer"
+    //     >
+    //       Learn React
+    //     </a> */}
+    //   </header>
     // </div>
-    
-    
-    // <div className={isBackgroundRed ? 'background-red' : 'background-blue'} />
- 
   );
 }
 

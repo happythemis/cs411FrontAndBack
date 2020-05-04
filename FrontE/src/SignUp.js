@@ -45,9 +45,7 @@ export default function SignUp() {
 
   if(signup_success){
       return (
-    <nav className = "HomeNav">
       <h1> Successfully Signed up, please sign in using your email and password</h1>
-    </nav>
   )
   }
 
