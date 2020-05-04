@@ -52,7 +52,7 @@ const useStyles = makeStyles((theme) => ({
   formControl: {
     margin: theme.spacing(1),
     minWidth: 120,
-    maxWidth: 300,
+    // maxWidth: 300,
   },
   chips: {
     display: 'flex',
@@ -63,6 +63,18 @@ const useStyles = makeStyles((theme) => ({
   },
   noLabel: {
     marginTop: theme.spacing(3),
+  },
+  paper2: {
+    marginTop: theme.spacing(2),
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+  },
+  title: {
+    // marginTop: theme.spacing(2),
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
   },
 }));
 
@@ -83,6 +95,7 @@ const Playlist = (props) => {
   const [curr_uri, set_uri] = useState("");
   const [userid, set_userid] = useState("");
   const [playlist, setPlaylist] = useState([]);
+  const [groupid, setGroupId] = useState("");
   // state = { value: [] };
 
   useEffect(() => {
@@ -163,232 +176,200 @@ const Playlist = (props) => {
     };
   }
 
-  return (
-    
-    <Container component="main">
-      <Grid container item xs={12} spacing={5}>
-        <Grid item xs={3}>
-          <div className={classes.paper}>
-            <span>
-              <Typography component="h5" variant="h6">
-                my username
+  function FormRowOption() {
+    return (
+      <React.Fragment>
+        <Grid item xs={4}>
+          <div>
+           <FormControl variant="outlined" className={classes.formControl}>
+                  <InputLabel id="demo-simple-select-outlined-label">Popularity</InputLabel>
+                  <Select
+                    labelId="demo-simple-select-outlined-label"
+                    id="demo-simple-select-outlined"
+                    value={age}
+                    onChange={handleChange}
+                    label="Age"
+                  >
+                    <MenuItem value={10}>Low</MenuItem>
+                    <MenuItem value={20}>Medium</MenuItem>
+                    <MenuItem value={30}>High</MenuItem>
+                  </Select>
+           </FormControl>
+           </div>
+        </Grid>
+        <Grid item xs={4}>
+          <div>
+        <FormControl variant="outlined" className={classes.formControl}>
+                  <InputLabel id="demo-simple-select-outlined-label">Dancability</InputLabel>
+                  <Select
+                    labelId="demo-simple-select-outlined-label"
+                    id="demo-simple-select-outlined"
+                    value={age}
+                    onChange={handleChange}
+                    label="Age"
+                  >
+                    <MenuItem value={10}>Low</MenuItem>
+                    <MenuItem value={20}>Medium</MenuItem>
+                    <MenuItem value={30}>High</MenuItem>
+                  </Select>
+           </FormControl>
+           </div>
+        </Grid>
+        <Grid item xs={4}>
+          <div> 
+        <FormControl variant="outlined" className={classes.formControl}>
+                  <InputLabel id="demo-simple-select-outlined-label">Energy</InputLabel>
+                  <Select
+                    labelId="demo-simple-select-outlined-label"
+                    id="demo-simple-select-outlined"
+                    value={age}
+                    onChange={handleChange}
+                    label="Age"
+                  >
+                    <MenuItem value={10}>Low</MenuItem>
+                    <MenuItem value={20}>Medium</MenuItem>
+                    <MenuItem value={30}>High</MenuItem>
+                  </Select>
+           </FormControl>
+           </div>
+        </Grid>
+      </React.Fragment>
+    );
+  }
+
+  function FormRowMidTwo() {
+    return (
+      <React.Fragment>
+        <Grid item xs={5}>
+                <Typography component="h5" variant="h6">
+                   Playlist URI
+                </Typography>
+                <form className={classes.form} noValidate>
+                  <TextField
+                    variant="outlined"
+                    margin="normal"
+                    required
+                    fullWidth
+                    name="userid"
+                    label="user id"
+                    type="userid"
+                    id="userid"
+                    autoComplete="userid"
+                    value={userid}
+                    onChange={e => set_userid(e.target.value)}
+                  />
+              </form>
+        </Grid>
+        <Grid item xs={2}>or</Grid>
+        <Grid item xs={5}>
+          <Typography component="h5" variant="h6">
+                Top 100
               </Typography>
+              
               <form className={classes.form} noValidate>
                 <TextField
                   variant="outlined"
                   margin="normal"
                   required
                   fullWidth
-                  name="uri"
-                  label="uri"
-                  type="uri"
-                  id="curr_uri"
-                  autoComplete="type uri"
-                  value={curr_uri}
-                  onChange={e => set_uri(e.target.value)}
+                  name="groupid"
+                  label="groupid"
+                  type="groupid"
+                  id="groupid"
+                  autoComplete="type groupid"
+                  value={groupid}
+                  onChange={e => setGroupId(e.target.value)}
                 />
               </form>
-            {/* </span>
-            <span> */}
-              <Typography component="h5" variant="h6">
+        </Grid>
+      </React.Fragment>
+    );
+  }
+
+  function FormRowTopTwo() {
+    return (
+      <React.Fragment>
+        <Grid item xs={12}>
+                <Typography component="h5" variant="h6" className={classes.title}>
+                   my username
+                </Typography>
+                <form className={classes.form} noValidate>
+                  <TextField
+                    variant="outlined"
+                    margin="normal"
+                    required
+                    fullWidth
+                    name="userid"
+                    label="user id"
+                    type="userid"
+                    id="userid"
+                    autoComplete="userid"
+                    value={userid}
+                    onChange={e => set_userid(e.target.value)}
+                  />
+              </form>
+        </Grid>
+        <Grid item xs={12}>
+          <Typography component="h5" variant="h6" className={classes.title}>
                 Create/Find Group Playlist
               </Typography>
+              
               <form className={classes.form} noValidate>
                 <TextField
                   variant="outlined"
                   margin="normal"
                   required
                   fullWidth
-                  name="userid"
-                  label="user id"
-                  type="userid"
-                  id="userid"
-                  autoComplete="userid"
-                  value={userid}
-                  onChange={e => set_userid(e.target.value)}
+                  name="groupid"
+                  label="groupid"
+                  type="groupid"
+                  id="groupid"
+                  autoComplete="type groupid"
+                  value={groupid}
+                  onChange={e => setGroupId(e.target.value)}
                 />
               </form>
-            </span>
-            
+        </Grid>
+      </React.Fragment>
+    );
+  }
 
-            
-            
-          </div>
-        </Grid>
-        <Grid item xs={3}>
-            <div className={classes.paper}>
-              <Typography component="h5" variant="h5">
-                choose the type
-              </Typography>
-              <Button
-                type="button"
-                fullWidth
-                variant="contained"
-                color="primary"
-                id="by_artist"
-                className={classes.submit}
-              >
-                General
-              </Button>
-              <Button
-                type="button"
-                fullWidth
-                variant="contained"
-                color="primary"
-                id="by_random"
-                className={classes.submit}
-              >
-                Dance/Party
-              </Button>
-              <Button
-                type="button"
-                fullWidth
-                variant="contained"
-                color="primary"d
-                id="by_artist"
-                className={classes.submit}
-              >
-                Workout
-              </Button>
-            
-            </div>
-          </Grid>
-        <Grid item xs={3}>
-         <div className={classes.paper}>
-            <TableContainer component={Paper}>
-              <Table className={classes.table} aria-label="simple table">
-                <TableHead>
-                  <TableRow>
-                    <TableCell align="right">Song Order</TableCell>
-                    <TableCell align="right">Song Name</TableCell>
-                    <TableCell align="right">Artist</TableCell>
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  {playlist.map((playlist) => (
-                    <TableRow key={playlist.name}>
-                      <TableCell align="right">{playlist.song_order}</TableCell>
-                      <TableCell align="right">{playlist.song_name}</TableCell>
-                      <TableCell align="right">{playlist.song_author}</TableCell>
-                    </TableRow>
-                  ))}
-                </TableBody>
-              </Table>
-            </TableContainer>
-          </div>
-        </Grid>
-        <Grid item xs={3}>
-        <div className={classes.paper}>
-         <div>
-            {/* <FormControl className={classes.formControl}>
-              <InputLabel id="demo-mutiple-chip-label">Popularity</InputLabel>
-              <Select
-                labelId="demo-mutiple-chip-label"
-                id="demo-mutiple-chip"
-                multiple
-                value={optionLevel}
-                onChange={handleChangeLevel}
-                input={<Input id="select-multiple-chip" />}
-                renderValue={(selected) => (
-                  <div className={classes.chips}>
-                    {selected.map((value) => (
-                      <Chip key={value} label={value} className={classes.chip} />
-                    ))}
-                  </div>
-                )}
-                MenuProps={MenuProps}
-              >
-                {levels.map((level) => (
-                  <MenuItem key={level} value={level} style={getStyles(level, optionLevel, theme)}>
-                    {level}n
-                    
-                  </MenuItem>
-                ))}
-              </Select>
-            </FormControl> */}
-             <FormControl variant="outlined" className={classes.formControl}>
-            <InputLabel id="demo-simple-select-outlined-label">Age</InputLabel>
-            <Select
-              labelId="demo-simple-select-outlined-label"
-              id="demo-simple-select-outlined"
-              value={age}
-              onChange={handleChange}
-              label="Age"
-            >
-              <MenuItem value={0}>
-                <em>None</em>
-              </MenuItem>
-              <MenuItem value={10}>Low</MenuItem>
-              <MenuItem value={20}>Medium</MenuItem>
-              <MenuItem value={30}>High</MenuItem>
-            </Select>
-          </FormControl>
- 
-          </div>
+
+  return (
+    
+    // <Container component="main">
+      <Grid container spacing={5}>
+        
+        <Grid container item xs={6} spacing={2} >
+        
+          <FormRowTopTwo/>
           
-          {/* <div>
-            <FormControl className={classes.formControl}>
-              <InputLabel id="demo-mutiple-chip-label">Dancability</InputLabel>
-              <Select
-                labelId="demo-mutiple-chip-label"
-                id="demo-mutiple-chip"
-                multiple
-                value={personName}
-                onChange={handleChange}
-                input={<Input id="select-multiple-chip" />}
-                renderValue={(selected) => (
-                  <div className={classes.chips}>
-                    {selected.map((value) => (
-                      <Chip key={value} label={value} className={classes.chip} />
-                    ))}
-                  </div>
-                )}
-                MenuProps={MenuProps}
-              >
-                {names.map((name) => (
-                  <MenuItem key={name} value={name} style={getStyles(name, personName, theme)}>
-                    {name}
-                  </MenuItem>
-                ))}
-              </Select>
-            </FormControl>
-          </div>
-          <div>
-            <FormControl className={classes.formControl}>
-              <InputLabel id="demo-mutiple-chip-label">Energy</InputLabel>
-              <Select
-                labelId="demo-mutiple-chip-label"
-                id="demo-mutiple-chip"
-                multiple
-                value={personName}
-                onChange={handleChange}
-                input={<Input id="select-multiple-chip" />}
-                renderValue={(selected) => (
-                  <div className={classes.chips}>
-                    {selected.map((value) => (
-                      <Chip key={value} label={value} className={classes.chip} />
-                    ))}
-                  </div>
-                )}
-                MenuProps={MenuProps}
-              >
-                {names.map((name) => (
-                  <MenuItem key={name} value={name} style={getStyles(name, personName, theme)}>
-                    {name}
-                  </MenuItem>
-                ))}
-              </Select>
-            </FormControl>
-          </div> */}
-         
-          </div>
-       
+        
+          <FormRowMidTwo/> 
+          
+          <Grid item xs = {12}>
+          <Typography component="h5" variant="h6" className={classes.title}>
+                Option
+          </Typography>
+
+          </Grid>
+          
+          
+          <FormRowOption/>
+            
         </Grid>
 
+
+        <Grid container item xs={6}>
+          this part would be the list of the songs
+        </Grid>
+        
+         
+        
       </Grid>
       
      
-    </Container>
+    // </Container>
   );
 }
 export default Playlist;
