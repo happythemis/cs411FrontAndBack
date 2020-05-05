@@ -33,6 +33,7 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 // import Checkbox from '@material-ui/core/Checkbox';
 import Chip from '@material-ui/core/Chip';
+import { borders } from '@material-ui/system';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -96,7 +97,7 @@ const Playlist = (props) => {
   const [userid, set_userid] = useState("");
   const [playlist, setPlaylist] = useState([]);
   const [groupid, setGroupId] = useState("");
-  // state = { value: [] };
+  const [option, setOption] = React.useState('');
 
   useEffect(() => {
     if(props.ls){
@@ -106,30 +107,10 @@ const Playlist = (props) => {
     }
   }, []);
 
-  const [personName, setPersonName] = React.useState([]);
-  const [optionLevel, setOptionLevel] = React.useState([]);
-
-  const handleChange = (event) => {
+  const handleOptionChange = (event) => {
     // setPersonName(event.target.value);
-    setAge(event.target.value);
+    setOption(event.target.value);
    
-  };
-
-  const handleChangeLevel = (event) => {
-    setOptionLevel(event.target.value);
-    
-   
-  };
-
-  const handleChangeMultiple = (event) => {
-    const { options } = event.target;
-    const value = [];
-    for (let i = 0, l = options.length; i < l; i += 1) {
-      if (options[i].selected) {
-        value.push(options[i].value);
-      }
-    }
-    setPersonName(value);
   };
 
   const names = [
@@ -151,13 +132,8 @@ const Playlist = (props) => {
     'High',
   ];
 
-  const [age, setAge] = React.useState('');
 
-  // const handleChange = (event) => {
-  //   setAge(event.target.value);
-  // };
 
-  
   function getStyles(name, personName, theme) {
     return {
       fontWeight:
@@ -178,7 +154,8 @@ const Playlist = (props) => {
 
   function FormRowOption() {
     return (
-      <React.Fragment>
+      // <React.Fragment>
+      <Grid container xs = {12}>
         <Grid item xs={4}>
           <div>
            <FormControl variant="outlined" className={classes.formControl}>
@@ -186,9 +163,9 @@ const Playlist = (props) => {
                   <Select
                     labelId="demo-simple-select-outlined-label"
                     id="demo-simple-select-outlined"
-                    value={age}
-                    onChange={handleChange}
-                    label="Age"
+                    value={option}
+                    onChange={handleOptionChange}
+                    label="option"
                   >
                     <MenuItem value={10}>Low</MenuItem>
                     <MenuItem value={20}>Medium</MenuItem>
@@ -200,13 +177,13 @@ const Playlist = (props) => {
         <Grid item xs={4}>
           <div>
         <FormControl variant="outlined" className={classes.formControl}>
-                  <InputLabel id="demo-simple-select-outlined-label">Dancability</InputLabel>
+                  <InputLabel id="demo-simple-select-outlined-label">Danceability</InputLabel>
                   <Select
                     labelId="demo-simple-select-outlined-label"
                     id="demo-simple-select-outlined"
-                    value={age}
-                    onChange={handleChange}
-                    label="Age"
+                    value={option}
+                    onChange={handleOptionChange}
+                    label="option"
                   >
                     <MenuItem value={10}>Low</MenuItem>
                     <MenuItem value={20}>Medium</MenuItem>
@@ -222,9 +199,9 @@ const Playlist = (props) => {
                   <Select
                     labelId="demo-simple-select-outlined-label"
                     id="demo-simple-select-outlined"
-                    value={age}
-                    onChange={handleChange}
-                    label="Age"
+                    value={option}
+                    onChange={handleOptionChange}
+                    label="option"
                   >
                     <MenuItem value={10}>Low</MenuItem>
                     <MenuItem value={20}>Medium</MenuItem>
@@ -233,35 +210,38 @@ const Playlist = (props) => {
            </FormControl>
            </div>
         </Grid>
-      </React.Fragment>
+      {/* </React.Fragment> */}
+      </Grid>
     );
   }
 
   function FormRowMidTwo() {
     return (
+      // <div className="container">
       <React.Fragment>
-        <Grid item xs={5}>
+      {/* // <Grid display="flex" borderColor="primary.main" borderWidth="5px" flex-direction= "column" justify-content= "space-around"> */}
+        <Grid >
                 <Typography component="h5" variant="h6">
                    Playlist URI
                 </Typography>
                 <form className={classes.form} noValidate>
-                  <TextField
-                    variant="outlined"
-                    margin="normal"
-                    required
-                    fullWidth
-                    name="userid"
-                    label="user id"
-                    type="userid"
-                    id="userid"
-                    autoComplete="userid"
-                    value={userid}
-                    onChange={e => set_userid(e.target.value)}
-                  />
-              </form>
+                    <TextField
+                      variant="outlined"
+                      margin="normal"
+                      required
+                      fullWidth
+                      name="uri"
+                      label="uri"
+                      type="uri"
+                      id="curr_uri"
+                      autoComplete="type uri"
+                      value={curr_uri}
+                      onChange={e => set_uri(e.target.value)}
+                    />
+                </form>
         </Grid>
-        <Grid item xs={2}>or</Grid>
-        <Grid item xs={5}>
+        <Grid >or</Grid>
+        <Grid >
           <Typography component="h5" variant="h6">
                 Top 100
               </Typography>
@@ -282,7 +262,8 @@ const Playlist = (props) => {
                 />
               </form>
         </Grid>
-      </React.Fragment>
+        {/* // </Grid> */}
+       </React.Fragment>
     );
   }
 
@@ -336,32 +317,58 @@ const Playlist = (props) => {
 
 
   return (
-    
-    // <Container component="main">
-      <Grid container spacing={5}>
+    <Container component="main">
+      <Grid container item xs={12} spacing={6}>
         
-        <Grid container item xs={6} spacing={2} >
-        
-          <FormRowTopTwo/>
-          
-        
-          <FormRowMidTwo/> 
-          
-          <Grid item xs = {12}>
-          <Typography component="h5" variant="h6" className={classes.title}>
-                Option
-          </Typography>
+        {/* <Grid container item xs={6} spacing={2} > */}
+        <Grid item xs = {6}>
+           <div>
+          {/* <div className={classes.paper}> */}
+            <div className="container2">
+             <FormRowTopTwo/>
+            </div>
+            {/* </div> */}
+            <div className="container">
+              <FormRowMidTwo/> 
+            </div>
+            {/* <Grid item xs = {12}> */}
+            <div className={classes.paper2}>
+            <Typography component="h5" variant="h6" className={classes.title}>
+                  Option
+            </Typography>
+            </div>
 
-          </Grid>
-          
-          
-          <FormRowOption/>
+            {/* </Grid> */}
             
+            <FormRowOption/>
+            </div>
         </Grid>
 
 
-        <Grid container item xs={6}>
-          this part would be the list of the songs
+        <Grid item xs={6}>
+          {/* this part would be the list of the songs */}
+          <div className={classes.paper}>
+            <TableContainer component={Paper}>
+              <Table className={classes.table} aria-label="simple table">
+                <TableHead>
+                  <TableRow>
+                    {/* <TableCell align="right">Song Order</TableCell> */}
+                    <TableCell align="right">Title</TableCell>
+                    <TableCell align="right">Artist</TableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {playlist.map((playlist) => (
+                    <TableRow key={playlist.name}>
+                      {/* <TableCell align="right">{playlist.song_order}</TableCell> */}
+                      <TableCell align="right">{playlist.song_name}</TableCell>
+                      <TableCell align="right">{playlist.song_author}</TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </TableContainer>
+          </div>
         </Grid>
         
          
@@ -369,7 +376,9 @@ const Playlist = (props) => {
       </Grid>
       
      
-    // </Container>
+     </Container>
   );
 }
 export default Playlist;
+
+

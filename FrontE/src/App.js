@@ -31,6 +31,7 @@ import Container from '@material-ui/core/Container';
 import HUE from '@material-ui/core/colors';
 // import { createMuiTheme } from '@material-ui/core/styles';
 import {createMuiTheme} from '@material-ui/styles'
+import logo from './spotify-icon.png'; 
 
 
 
@@ -62,7 +63,9 @@ const useStyles = makeStyles(theme => ({
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
+
   },
+  
 }));
 
 
@@ -76,21 +79,32 @@ export default function App() {
   const isBackgroundRed = true;
 
   function FormRow() {
+    const navStyle = {
+      color: 'white'
+    };
+    const logoStyle = {
+      width: 50,
+      height: 50,
+    };
     return (
         <form className={classes.form} noValidate>
         {login_status ? (
           <navi>
+            <div className="nav-logo">
+              <img style={logoStyle} src={logo} />
+              <h3>PlaylistD</h3>
+             </div>
           <ul className ="nav-links">
-            <Link to="/myfavoritesongs">
+            <Link style = {navStyle} to="/myfavoritesongs">
               <li>My Fav Song</li>
             </Link>
-            <Link to="/playlist">
+            <Link style = {navStyle} to="/playlist">
               <li>Playlist</li>
             </Link>
-            <Link to="/changepwd">
+            <Link style = {navStyle} to="/changepwd">
               <li>Change Password</li>
             </Link>
-            <Link to="/deleteaccount">
+            <Link style = {navStyle} to="/deleteaccount">
               <li>Delete Account</li>
             </Link>
           </ul>
@@ -98,14 +112,18 @@ export default function App() {
       ):(
         // // Menu for NOT Signed in Status
         <navi>
+          <div className="nav-logo">
+            <img style={logoStyle} src={logo} />
+            <h3>PlaylistD</h3>
+          </div>
           <ul className ="nav-links">
-            <Link to="/">
+            <Link style = {navStyle} to="/">
               <li>Playlistd</li>
             </Link>
-            <Link to="/signin">
+            <Link style = {navStyle} to="/signin">
               <li>Sign In</li>
             </Link>
-            <Link to="/signup">
+            <Link style = {navStyle} to="/signup">
               <li>Sign Up</li>
             </Link>
           </ul>
@@ -148,26 +166,6 @@ export default function App() {
 
         </div>
       </Router>
-      
-    // <div className="App">
-    //   <header className="App-header">
-    //     {/* <div className={classes.root}>  */}
-    //       {/* <FormRow /> */}
-    //      {/* </div> */}
-    //     {/* <img src={logo} className="App-logo" alt="logo" /> */}
-    //     {/* <p>
-    //       Edit <code>src/App.js</code> and save to reload.
-    //     </p>
-    //     <a
-    //       className="App-link"
-    //       href="https://reactjs.org"
-    //       target="_blank"
-    //       rel="noopener noreferrer"
-    //     >
-    //       Learn React
-    //     </a> */}
-    //   </header>
-    // </div>
   );
 }
 
