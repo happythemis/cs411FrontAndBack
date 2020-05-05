@@ -34,6 +34,8 @@ import Select from '@material-ui/core/Select';
 // import Checkbox from '@material-ui/core/Checkbox';
 import Chip from '@material-ui/core/Chip';
 import { borders } from '@material-ui/system';
+import FormGroup from '@material-ui/core/FormGroup';
+import Switch from '@material-ui/core/Switch';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -98,6 +100,16 @@ const Playlist = (props) => {
   const [playlist, setPlaylist] = useState([]);
   const [groupid, setGroupId] = useState("");
   const [option, setOption] = React.useState('');
+
+  const [top100, setTop100] = React.useState({
+    checkedA: true,
+    checkedB: true,
+  });
+
+  const handleChangeTop100 = (event) => {
+    setTop100({ ...top100, [event.target.name]: event.target.checked });
+  };
+
 
   useEffect(() => {
     if(props.ls){
@@ -221,6 +233,21 @@ const Playlist = (props) => {
       <React.Fragment>
       {/* // <Grid display="flex" borderColor="primary.main" borderWidth="5px" flex-direction= "column" justify-content= "space-around"> */}
         <Grid >
+          <FormControlLabel
+            control={
+              <Switch
+                checked={top100.checkedB}
+                onChange={handleChangeTop100}
+                name="checkedB"
+                color="primary"
+              />
+            }
+            label="Top 100"
+          />
+         
+        </Grid>
+        <div className="container2" >or</div>
+        <Grid >
                 <Typography component="h5" variant="h6">
                    Playlist URI
                 </Typography>
@@ -239,28 +266,6 @@ const Playlist = (props) => {
                       onChange={e => set_uri(e.target.value)}
                     />
                 </form>
-        </Grid>
-        <Grid >or</Grid>
-        <Grid >
-          <Typography component="h5" variant="h6">
-                Top 100
-              </Typography>
-              
-              <form className={classes.form} noValidate>
-                <TextField
-                  variant="outlined"
-                  margin="normal"
-                  required
-                  fullWidth
-                  name="groupid"
-                  label="groupid"
-                  type="groupid"
-                  id="groupid"
-                  autoComplete="type groupid"
-                  value={groupid}
-                  onChange={e => setGroupId(e.target.value)}
-                />
-              </form>
         </Grid>
         {/* // </Grid> */}
        </React.Fragment>
@@ -332,15 +337,12 @@ const Playlist = (props) => {
               <FormRowMidTwo/> 
             </div>
             {/* <Grid item xs = {12}> */}
-            <div className={classes.paper2}>
+            <div className="container">
             <Typography component="h5" variant="h6" className={classes.title}>
                   Option
             </Typography>
+              <FormRowOption/>
             </div>
-
-            {/* </Grid> */}
-            
-            <FormRowOption/>
             </div>
         </Grid>
 
